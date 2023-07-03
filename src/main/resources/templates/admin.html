@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+
+
+
+<table th:border="1">
+    <caption>Users</caption>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Roles</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="user:${showAllUsers}">
+
+        <td th:text="${user.id}">Id </td>
+
+        <td th:text="${user.getUsername()}">Name</td>
+
+        <td th:text="${user.getPassword()}">Password</td>
+
+        <td th:text="${user.getEmail()}">Email</td>
+
+        <td th:text="${user.getRoles()}">Roles</td>
+
+        <td >
+            <form method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                <input type="submit" value="Update" />
+            </form>
+            <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                <input type="submit"  value="Delete" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<input type = "button" value = "New User"
+       onclick = "window.location.href = 'new'"/>
+
+<input  type = "button"  value = "logout"
+        onclick = "window.location.href = '/logout'"/>
+</body>
+</html>
