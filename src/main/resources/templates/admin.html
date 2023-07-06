@@ -97,15 +97,15 @@
 <!--                                            </button>-->
                                             <button type="button" class="btn btn-info" data-toggle="modal"
                                                     data-bs-target="#editModal"
-                                                    th:data-bs-target="${'#editModal'+user.getId()}">
+                                                    th:data-bs-target="${'#editModal'+user.id}">
                                                 Edit
                                             </button>
 
 
                                             <!-- Modal для редактирования -->
-                                            <div class="modal fade" th:id="${'editModal'+ user.getId()}"
+                                            <div class="modal fade" th:id="${'editModal'+ user.id}"
                                                  aria-labelledby="editModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" modal-dialog-centered>
+                                                <div class="modal-dialog" >
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="editModalLabel">Edit User</h5>
