@@ -91,21 +91,19 @@
 
                                         <td>
 
-<!--                                            <button type="button" class="btn btn-info" data-toggle="modal"-->
-<!--                                                    th:data-bs-target="'#editModal' + ${user.id}">-->
-<!--                                                Edit-->
-<!--                                            </button>-->
+
                                             <button type="button" class="btn btn-info" data-toggle="modal"
                                                     data-bs-target="#editModal"
-                                                    th:data-bs-target="${'#editModal'+user.id}">
+                                                    th:data-bs-target="${'#editModal'+user.getId()}">
                                                 Edit
                                             </button>
 
 
                                             <!-- Modal для редактирования -->
-                                            <div class="modal fade" th:id="${'editModal'+ user.id}"
-                                                 aria-labelledby="editModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" >
+                                            <div class="modal fade" th:id="${'editModal'+ user.getId()}"
+                                                 aria-labelledby="editModalLabel" aria-hidden="true" tabindex="-1"
+                                                 role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="editModalLabel">Edit User</h5>
@@ -114,8 +112,9 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-<!--                                                        <div class="modal-body">-->
-                                                            <form th:action="@{/admin/{id}/(id=${user.id})}" th:object="${user}"
+                                                        <div class="modal-body">
+                                                            <form th:action="@{/admin/{id}/(id=${user.id})}"
+                                                                  th:object="${user}"
                                                                   method="PATCH">
 
                                                                 <div class="form-group">
@@ -149,22 +148,16 @@
                                                                     <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close
                                                                     </button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Edit
+                                                                    <button type="submit" class="btn btn-primary"
+                                                                            data-dismiss="modal">Edit
                                                                     </button>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
-<!--                                            </div>-->
-
-
+                                            </div>
                                         </td>
-
-                                        <!--                                        //кнопка для перехода к edit-->
-                                        <!--                                        <form method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">-->
-                                        <!--                                            <input type="submit" class="btn btn-info" value="Edit"/>-->
-                                        <!--                                        </form>-->
 
 
                                         <td>
