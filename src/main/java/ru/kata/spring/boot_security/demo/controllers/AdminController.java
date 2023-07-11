@@ -72,18 +72,7 @@ public class AdminController {
         System.out.println("save");
         return "redirect:/admin/";
     }
-//        userServiceImp.saveUser(user);
-//        System.out.println("save");
-////        return "redirect:/admin/";
-//        return user.getUsername();
-//    }
 
-//    @GetMapping("/{id}/edit")
-//    public String edit(Model model, @PathVariable("id") Long id) {
-//        model.addAttribute("user", userService.showUser(id));
-//        System.out.println("edit");
-//        return "/edit";
-//    }
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userServiceImp.showUser(id));
