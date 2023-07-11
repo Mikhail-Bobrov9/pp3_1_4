@@ -18,21 +18,11 @@
         <div class="col">
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <div th:text="${#authentication.getName()}"></div>
+                    <div>
+                        <div class="text-white" th:text="${user.username}+ ' with Role: '+${user.roles}"></div>
 
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark"
-                            aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse show" id="navbarDark">
-                        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                            <li class="fixed-top">
-                                <a class="nav-link active" aria-current="page" href="#">Logout</a>
-                            </li>
-                        </ul>
                     </div>
+                    <a class="text-white" href="/logout">Logout</a>
                 </div>
             </nav>
         </div>
@@ -98,8 +88,8 @@
 </div>
 </div>
 
-<!--<script src="assets/js/jquery.min.js"></script>-->
-<!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

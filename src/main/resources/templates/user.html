@@ -18,40 +18,28 @@
         <div class="col">
             <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <div th:text="${#authentication.getName()}"></div>
-
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark"
-                            aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse show" id="navbarDark">
-                        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                            <li class="fixed-top">
-                                <a class="nav-link active" aria-current="page" href="#">Logout</a>
-                            </li>
-                        </ul>
+                    <div>
+                        <div class="text-white" th:text="${user.username}+ ' with Role: '+${user.roles}"></div>
                     </div>
+                    <a class="text-white" href="/logout">Logout</a>
                 </div>
             </nav>
         </div>
-
     </div>
     <div class="row">
         <div class="col-2">
             <form>
                 <nav class="nav nav-pills nav flex-column">
-                    <a class="nav-link active"  href="/user/">User</a>
+                    <a class="nav-link active" href="/user/">User</a>
                 </nav>
             </form>
         </div>
 
-        <div class="col bg-light" >
+        <div class="col bg-light">
 
-                <div class="h3">
-                    <a type="text" >User information-page</a>
-                </div>
+            <div class="h3">
+                <a type="text">User information-page</a>
+            </div>
 
             <div class="card">
                 <div class="card-header">
@@ -80,117 +68,14 @@
                         </table>
                     </div>
                 </div>
-
-            </div>
-
-
-
-
-
-
-
-
-<!--            <div class="col-12">-->
-<!--                <ul class="nav nav-tabs" role="tablist">-->
-<!--                    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab"-->
-<!--                                                                href="#tab-1">Users Table</a></li>-->
-<!--                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab"-->
-<!--                                                                href="#tab-2">New User</a></li>-->
-<!--                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab"-->
-<!--                                                                href="#tab-3"></a></li>-->
-<!--                </ul>-->
-<!--                <div class="tab-content">-->
-<!--                    <div class="tab-pane active" role="tabpanel" id="tab-1"><p class="h4"> All Users</p>-->
-<!--                        <div class="table-responsive">-->
-<!--                            <table class="table table-striped">-->
-<!--                                <thead>-->
-<!--                                <tr>-->
-<!--                                    <th scope="col">ID</th>-->
-<!--                                    <th scope="col">Username</th>-->
-<!--                                    <th scope="col">Email</th>-->
-<!--                                    <th scope="col">Role</th>-->
-<!--                                    <th scope="col">Edit</th>-->
-<!--                                    <th scope="col">Delete</th>-->
-<!--                                </tr>-->
-<!--                                </thead>-->
-<!--                                <tbody>-->
-<!--                                </tr>-->
-<!--                                <tr th:each="user:${showAllUsers}">-->
-<!--                                    <td th:text="${user.id}">ID</td>-->
-<!--                                    <td th:text="${user.getUsername()}"></td>-->
-<!--                                    <td th:text="${user.getEmail()}"></td>-->
-<!--                                    <td th:text="${user.getRoles()}"></td>-->
-
-<!--                                    <td>-->
-<!--                                        <form method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">-->
-<!--                                            <input type="submit" value="Edit"/>-->
-<!--                                        </form>-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">-->
-<!--                                            <input type="submit" value="Delete"/>-->
-<!--                                        </form>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="tab-pane " role="tabpanel" id="tab-2"><p class="h4"> Add New User</p>-->
-<!--                        <p>-->
-<!--                        <form th:method="POST" th:action="@{/admin/}" th:object="${user}">-->
-<!--                            <label for="username"> Enter Username: </label>-->
-<!--                            <input class="form-control" type="text" placeholder="username" name="username"-->
-<!--                                   id="username">-->
-
-<!--                            <label for="password"> Enter password: </label>-->
-<!--                            <input class="form-control" type="text" placeholder="Password" name="password"-->
-<!--                                   id="password">-->
-
-
-<!--                            <label for="email"> Enter email: </label>-->
-<!--                            <input class="form-control" type="email" placeholder="Email" name="email" id="email">-->
-
-<!--                            <div class="form-group">-->
-<!--                                <label for="roles">Roles</label>-->
-<!--                                <select multiple class="form-control" name="roles" id="roles">-->
-
-<!--                                    <option selected="selected" value="1">USER</option>-->
-<!--                                    <option value="2">ADMIN</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="form-group row">-->
-<!--                                <div class="col-sm-10">-->
-<!--                                    <button type="submit" class="btn btn-primary">Sign in</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                        </form>-->
-<!--                        </p>-->
-<!--                    </div>-->
-
-                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-12">-->
 
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-6"></div>-->
-<!--        <div class="col-md-6">-->
 
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<script src="assets/js/jquery.min.js"></script>-->
-<!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -204,81 +89,3 @@
 </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"><title>Spring Security Example</title><link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" href="assets/css/Articles-Badges-images.css"></head><body><table border="1px">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th scope="col">Username</th>-->
-<!--        <th scope="col">Email</th>-->
-<!--        <th scope="col">Roles</th>-->
-<!--        <th scope="col">Password</th>-->
-
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:object="${user}">-->
-<!--        <td><h1 th:text="${user.getUsername()} "></h1></td>-->
-<!--        <td><h1 th:text="${user.getEmail()}"></h1></td>-->
-<!--        <td><h1 th:text="${user.getRoles()}"></h1></td>-->
-<!--        <td><h1 th:text="${user.getPassword()}"></h1></td>-->
-
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-
-<!--<input align="right" type="button" value="logout" onclick="window.location.href = '/logout'"><script src="assets/js/jquery.min.js"></script><script src="assets/bootstrap/js/bootstrap.min.js"></script></body></html>-->

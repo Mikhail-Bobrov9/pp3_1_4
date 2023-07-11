@@ -18,4 +18,7 @@ public interface UserService extends UserDetailsService {
     List<User> getAllUsers();
 
     void updateUser(User user);
+
+    boolean isUsernameUnique(String username);
+
 }

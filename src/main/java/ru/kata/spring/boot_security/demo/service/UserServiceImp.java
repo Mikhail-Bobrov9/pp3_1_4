@@ -8,11 +8,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
@@ -31,12 +34,13 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public void saveUser(User user) {
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
-    @Transactional
+
     public User showUser(Long id) {
         User user = userRepository.findById(id).get();
         return user;
@@ -51,7 +55,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    @Transactional
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -65,8 +69,10 @@ public class UserServiceImp implements UserService {
         userRepository.save(user);
     }
 
+
+
     @Override
-    @Transactional
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username);
 
@@ -74,5 +80,11 @@ public class UserServiceImp implements UserService {
             throw new UsernameNotFoundException("User not found");
         }
         return user;
+    }
+
+    @Override
+    public boolean isUsernameUnique(String username) {
+        User existingUser = userRepository.findByUsername(username);
+        return existingUser == null;
     }
 }
