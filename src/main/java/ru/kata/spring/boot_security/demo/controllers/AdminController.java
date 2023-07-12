@@ -6,10 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.RoleServiceImp;
-import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.service.UserServiceImp;
+import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -20,13 +19,13 @@ public class AdminController {
 
     private final UserServiceImp userServiceImp;
     private final RoleServiceImp roleServiceImp;
+    private final UserValidator userValidator;
 
     @Autowired
-    public AdminController(UserServiceImp userServiceImp,RoleServiceImp roleServiceImp) {
+    public AdminController(UserServiceImp userServiceImp, RoleServiceImp roleServiceImp, UserValidator userValidator) {
         this.userServiceImp = userServiceImp;
         this.roleServiceImp = roleServiceImp;
-
-
+        this.userValidator = userValidator;
     }
 
 
@@ -52,7 +51,7 @@ public class AdminController {
         return "showUser";
     }
 
-    @GetMapping("/new")
+    @GetMapping
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleServiceImp.getAllRoles());
@@ -61,13 +60,15 @@ public class AdminController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute("user") @Valid User user) {
+    public String save(@ModelAttribute("user") @Valid User user, BindingResult bindingResult ) {
+       User existUser = userServiceImp.findByUsername (user.getUsername());
 
-        if (!userServiceImp.isUsernameUnique(user.getUsername())) {
-            System.out.println("Имя не  уникально!");
-            return "redirect:/admin/";
+       if (existUser != null) {
+           bindingResult.rejectValue("username", "error.user","Такой username уже используется");
+       }
+        if (bindingResult.hasErrors()) {
+            return "errorUser";
         }
-
         userServiceImp.saveUser(user);
         System.out.println("save");
         return "redirect:/admin/";
@@ -81,9 +82,17 @@ public class AdminController {
     }
     @PatchMapping("/{id}/edit")
     public String update(@ModelAttribute("user") @Valid User user,
-                         @PathVariable("id") Long id) {
+                         BindingResult bindingResult) {
+        User existUser = userServiceImp.findByUsername (user.getUsername());
+
+        if (existUser != null) {
+            bindingResult.rejectValue("username", "error.user","Такой username уже используется");
+        }
+        if (bindingResult.hasErrors()) {
+            return "errorUser";
+        }
         userServiceImp.updateUser(user);
-        System.out.println("Update");
+        System.out.println("save");
         return "redirect:/admin/";
     }
 

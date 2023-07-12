@@ -82,9 +82,4 @@ public class UserServiceImp implements UserService {
         return user;
     }
 
-    @Override
-    public boolean isUsernameUnique(String username) {
-        User existingUser = userRepository.findByUsername(username);
-        return existingUser == null;
-    }
 }

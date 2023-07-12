@@ -19,6 +19,4 @@ public interface UserService extends UserDetailsService {
 
     void updateUser(User user);
 
-    boolean isUsernameUnique(String username);
-
 }
